@@ -17,13 +17,11 @@ export const loginError = (error) => ({
     error
 })
 
-export const fetchLogin = ({ username, password }) => {
-    return dispatch => {
-        dispatch(loginRequested())
-        return Api.post('auth/', { username, password })
-            .then(response => dispatch(loginSuccess(response.token)))
-            .catch(error => dispatch(loginError(error)))
-    }
+export const fetchLogin = ({ username, password }) => dispatch => {
+    dispatch(loginRequested())
+    return Api.post('auth/', { username, password })
+        .then(response => dispatch(loginSuccess(response.token)))
+        .catch(error => dispatch(loginError(error)))
 }
 
 export const SET_TOKEN = 'SET_TOKEN'

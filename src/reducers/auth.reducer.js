@@ -1,7 +1,8 @@
 import { 
     LOGIN_REQUESTED, 
     LOGIN_SUCCESS,
-    LOGIN_ERROR} from "../actions"
+    LOGIN_ERROR,
+    SET_TOKEN} from "../actions"
 
 
 export const auth = (state={ isFetching: false }, action) => {
@@ -12,6 +13,8 @@ export const auth = (state={ isFetching: false }, action) => {
             return {...state, isFetching: false, token: action.token}
         case LOGIN_ERROR:
             return {...state, isFetching: false, error: action.error}
+        case SET_TOKEN:
+            return {...state, token: action.token}
         default:
             return state
     }

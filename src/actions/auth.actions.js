@@ -1,6 +1,4 @@
-import fetch from "cross-fetch"
-
-export const API_URL = "http://localhost:8000/"
+import { Api } from "../utils"
 
 export const LOGIN_REQUESTED = 'LOGIN_REQUESTED'
 export const loginRequested = () => ({
@@ -22,14 +20,14 @@ export const loginError = (error) => ({
 export const fetchLogin = ({ username, password }) => {
     return dispatch => {
         dispatch(loginRequested())
-        return fetch(API_URL + 'auth/', {
-            method: 'POST',
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ username, password })
-        }).then(response => response.json())
-        .then(json => dispatch(loginSuccess(json.token)))
+        return Api.post('auth/', { username, password })
+            .then(response => dispatch(loginSuccess(response.token)))
+            .catch(error => dispatch(loginError(error)))
     }
 }
+
+export const SET_TOKEN = 'SET_TOKEN'
+export const setToken = (token) => ({
+    type: SET_TOKEN,
+    token
+})

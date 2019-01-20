@@ -10,16 +10,7 @@ import PrivateRoute from "./PrivateRoute"
 import "../styles/App.css"
 
 class App extends Component{
-
-    componentDidMount(){
-        const { dispatch } = this.props
-        const token = localStorage.getItem('token')
-
-        if(token && token !== "undefined"){
-            dispatch(setToken(token))
-        }
-    }
-
+    
     render() {
         return (
             <Router>

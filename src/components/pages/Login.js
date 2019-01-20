@@ -39,14 +39,11 @@ class Login extends Component{
     }
 
     handleChange(e){
-        this.setState({[e.target.name]: e.target.value})
         const { dispatch } = this.props
         if(this.props.error){
             dispatch(clearError())
         }
-        if(this.state.error.username || this.state.error.password){
-            this.setState({...this.state, error: {}})
-        }
+        this.setState({[e.target.name]: e.target.value, error: {}})
     }
 
     validate(){

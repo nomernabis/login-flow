@@ -29,3 +29,8 @@ export const setToken = (token) => ({
     type: SET_TOKEN,
     token
 })
+
+export const CLEAR_ERROR = 'CLEAR_ERROR'
+export const clearError = () => ({
+    type: CLEAR_ERROR
+})

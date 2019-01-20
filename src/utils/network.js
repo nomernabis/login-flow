@@ -14,7 +14,6 @@ const handleErrors = (response) => {
     if(response.ok){
         return response.json()
     }
-    console.log(response instanceof TypeError)
     if(response instanceof TypeError){
         return Promise.reject(response.message)
     } else {

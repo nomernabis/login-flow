@@ -5,6 +5,7 @@ import { setToken } from "../../actions"
 import "../../styles/Main.css"
 
 import { NavigationBar } from "../NavigationBar"
+import Content from "../Content"
 
 class Main extends Component{
     render(){
@@ -17,7 +18,10 @@ class Main extends Component{
                         this.props.dispatch(setToken(undefined))
                     }}>Logout</a>
                 </div>
-                <NavigationBar />
+                <div style={{display: "flex", flexDirection: "row", height: "100%"}}>
+                    <NavigationBar />
+                    <Content />
+                </div>
             </div>
         )
     }

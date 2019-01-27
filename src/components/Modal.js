@@ -21,6 +21,27 @@ class Modal extends Component {
         this.onChange = this.onChange.bind(this)
         this.onCreateClicked = this.onCreateClicked.bind(this)
         this.validate = this.validate.bind(this)
+        this.update = this.update.bind(this)
+        this.deleteItem = this.deleteItem.bind(this)
+    }
+    componentWillReceiveProps(nextProps){
+        console.log(nextProps)
+        if(nextProps.name){
+            this.setState({ name: nextProps.name })
+        }
+    }
+    deleteItem(){
+        const { data } = this.props
+        this.setState({ isFetching: true })
+        Api.delete('categories/' + data.id + '/').then(response => {
+            console.log('delete success')
+            this.setState({ isFetching: false })
+            dispatch(hideModal())
+            dispatch(fetchCategories())
+        }).catch(error => {
+            console.log('delete error', error)
+            this.setState({ isFetching: false, error })
+        })
     }
     validate(){
         const { name } = this.state
@@ -35,42 +56,78 @@ class Modal extends Component {
         this.setState({ error })
         return !error.name
     }
+    update(name){
+        const { dispatch } = this.props
+        this.setState({ isFetching: true })
+        Api.patch('categories/' + this.props.data.id + '/', { name })
+            .then(response => {
+                console.log('success update')
+                this.setState({ isFetching: false })
+                dispatch(hideModal())
+                dispatch(fetchCategories())
+            }).catch(error => {
+                console.log('error update')
+                this.setState({ isFetching: false, error })
+            })
+    }
     onCreateClicked(){
         const { name } = this.state
         const { dispatch } = this.props
 
         if(this.validate()){
-            this.setState({ isFetching: true })
-            Api.post('categories/', { name })
-            .then(response => {
-                this.setState({ isFetching: false })
-                dispatch(hideModal())
-                dispatch(fetchCategories())
-            })
-            .catch(error => {
-                this.setState({ isFetching: false, error })
-            })
+            if(this.props.name){
+                this.update(name)
+            } else {
+                this.setState({ isFetching: true })
+                Api.post('categories/', { name })
+                .then(response => {
+                    this.setState({ isFetching: false })
+                    dispatch(hideModal())
+                    dispatch(fetchCategories())
+                })
+                .catch(error => {
+                    this.setState({ isFetching: false, error })
+                })
+            }
         }
     }
     onChange(e){
         this.setState({name: e.target.value, error: {}})
     }
     render(){
-        const { show, dispatch } = this.props
-        return (
-            <div style={{ display: show ? "flex" : "none"}} className="modal-container">
+        const { show, dispatch, modal_type } = this.props
+        console.log('modal_type', this.props.modal_type)
+        let content
+        if(modal_type == 'INFO_MODAL'){
+            content = (
                 <div className="modal-content">
-                    <div>Modal Text</div>
-                    {this.state.error.global && (<span>{this.state.error.global}</span>)}
+                    <div>Do u want to delete category</div>
+                    <div>{this.props.data.name}</div>
                     <div>
-                        <Field type="text" name="name" value={this.state.name} onChange={this.onChange } error = {this.state.error.name} />
-                        <button disabled={this.state.isFetching} value={this.state.name} onClick={this.onCreateClicked}>Create</button>
-                        <button onClick={() => {
-                            dispatch(hideModal())
-                            this.setState({ name: '', error: {}})
-                        }}>Cancel</button>
+                        <button onClick={this.deleteItem}>Yes</button>
+                        <button onClick={() => dispatch(hideModal())}>No</button>
                     </div>
                 </div>
+            )
+        } else {
+            content = (
+            <div className="modal-content">
+                <div>Modal Text</div>
+                {this.state.error.global && (<span>{this.state.error.global}</span>)}
+                <div>
+                    <Field type="text" name="name" value={this.state.name} onChange={this.onChange } error = {this.state.error.name} />
+                    <button disabled={this.state.isFetching} value={this.state.name} onClick={this.onCreateClicked}>Create</button>
+                    <button onClick={() => {
+                        dispatch(hideModal())
+                        this.setState({ name: '', error: {}})
+                    }}>Cancel</button>
+                </div>
+            </div>
+            )
+        }
+        return (
+            <div style={{ display: show ? "flex" : "none"}} className="modal-container">
+               {content}
             </div>
         )
     }
@@ -78,7 +135,10 @@ class Modal extends Component {
 
 
 const mapStateToProps = (state) => ({
-    show: state.modal.show
+    show: state.modal.show,
+    name: state.modal.data ? state.modal.data.name : undefined,
+    data: state.modal.data,
+    modal_type: state.modal.modal_type
 })
 
 export default connect(mapStateToProps)(Modal)

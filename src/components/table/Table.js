@@ -3,7 +3,7 @@ import { TableItem } from "./TableItem"
 import { connect } from "react-redux"
 
 import TableHeader from "./TableHeader"
-import { showModal } from "../../actions"
+import { showModal, showInfoModal } from "../../actions"
 
 import "../../styles/Table.css"
 
@@ -17,7 +17,7 @@ class Table extends Component{
         return (
             <div className="table">
                 <TableHeader columns={['Id', 'Name', 'Actions']} />
-                {items.map(item => <TableItem item={item} onEdit={() => dispatch(showModal(item))}/>)}
+                {items.map(item => <TableItem item={item} onDelete={() => dispatch(showInfoModal(item))} onEdit={() => dispatch(showModal(item))}/>)}
             </div>
         )
     }

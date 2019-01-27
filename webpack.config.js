@@ -25,6 +25,10 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+        },      
     },
     plugins: [
         new HtmlWebpackPlugin({

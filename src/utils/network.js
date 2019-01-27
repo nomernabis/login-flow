@@ -11,8 +11,14 @@ const headerJson = {
 const Api = {}
 
 const handleErrors = (response) => {
+    console.log('resp', response)
     if(response.ok){
-        return response.json()
+        if(response.status == 204){
+            console.log('No Content')
+            return Promise.resolve({ status: 204})
+        } else {
+            return response.json()
+        }
     }
     if(response instanceof TypeError){
         return Promise.reject(response.message)
@@ -39,6 +45,20 @@ Api.get = (url, isAuthorized = true) => {
         headerJson["Authorization"] = "Token " + localStorage.getItem("token")
     }
     return call(API_URL + url, "get", headerJson)
+}
+
+Api.patch = (url, data, isAuthorized = true) => {
+    if(isAuthorized){
+        headerJson["Authorization"] = "Token " + localStorage.getItem("token")
+    }
+    return call(API_URL + url, "PATCH", headerJson, data)
+}
+
+Api.delete = (url, isAuthorized = true) => {
+    if(isAuthorized){
+        headerJson["Authorization"] = "Token " + localStorage.getItem("token")
+    }
+    return call(API_URL + url, "delete", headerJson)
 }
 
 export { Api }

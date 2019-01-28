@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { setToken } from "../../actions"
+import { Route } from "react-router-dom"
 
 import "../../styles/Main.css"
 
-import { NavigationBar } from "../NavigationBar"
+import NavigationBar from "../NavigationBar"
 import Content from "../Content"
 
 class Main extends Component{
@@ -19,8 +20,8 @@ class Main extends Component{
                     }}>Logout</a>
                 </div>
                 <div style={{display: "flex", flexDirection: "row", height: "100%"}}>
-                    <NavigationBar />
-                    <Content />
+                    <NavigationBar items={[{name: 'Categories', route: '/'}, {name: 'Products', route: '/products'}]} />
+                    <Route component={Content} />
                 </div>
             </div>
         )

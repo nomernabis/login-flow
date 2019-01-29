@@ -4,14 +4,15 @@ import { showInfoModal } from "../../actions"
 import EditIcon from "../../icons/edit.svg"
 import TrashIcon from "../../icons/delete.svg"
 
-export const TableItem = ({ item, onEdit, onDelete }) => {
-    const content = Object.keys(item).map(prop => (<div className="table-col">{ item[prop] }</div>))
+export const TableItem = ({ item, onEdit, onDelete, showCols }) => {
+    const content = showCols.map(prop => (<div className="table-col">{ item[prop] }</div>))
+    console.log('item ', showCols)
     return(
         <div className="table-row material-text-normal">
             {content}
             <div className="table-col">
-                <button className="btn" onClick={onEdit}><EditIcon fill="#fff" width={24} height={24} /></button>
-                <button className="btn" onClick={onDelete}><TrashIcon fill="#fff" width={24} height={24} /></button></div>
+            <button className="btn" onClick={onEdit}><EditIcon fill="#fff" width={24} height={24} /></button>
+            <button className="btn" onClick={onDelete}><TrashIcon fill="#fff" width={24} height={24} /></button></div>
         </div>
     )
 }

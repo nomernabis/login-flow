@@ -18,7 +18,7 @@ export const productsError = (error) => ({
 })
 
 export const fetchProducts = () => dispatch => {
-    return Api.get('/products')
+    return Api.get('products/')
     .then(items => dispatch(productsSuccess(items)))
     .catch(error => dispatch(productsError(error)))
 }

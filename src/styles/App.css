@@ -36,6 +36,13 @@ body{
 .btn:hover{
     background-color: royalblue;
 }
-.whiteSvg g path{
-    fill: white;
+.page-container{
+    padding: 32px;
+    height: 100%;
+    box-sizing: border-box;
+}
+.perfect-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -5,10 +5,7 @@ import App from "../components/App"
 import configureStore from "../configureStore"
 
 
-//const store = configureStore({auth: { token: localStorage.getItem('token')}})
-
-const store = configureStore({auth: { token: 'fordemo'}})
-
+const store = configureStore({auth: { token: localStorage.getItem('token')}})
 
 class Root extends Component{
     render(){

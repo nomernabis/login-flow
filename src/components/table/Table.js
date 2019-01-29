@@ -16,8 +16,8 @@ class Table extends Component{
         const { items, dispatch } = this.props
         return (
             <div className="table">
-                <TableHeader columns={['Id', 'Name', 'Actions']} />
-                {items.map(item => <TableItem item={item} onDelete={() => dispatch(showInfoModal(item))} onEdit={() => dispatch(showModal(item))}/>)}
+                <TableHeader columns={this.props.columns} />
+                {items.map(item => <TableItem item={item} showCols={this.props.showCols} onDelete={() => dispatch(showInfoModal(item))} onEdit={() => dispatch(showModal(item))}/>)}
             </div>
         )
     }

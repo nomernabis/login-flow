@@ -16,3 +16,7 @@ export const newErrorObj = error => {
         return newError
     }
 }
+
+export const isNumber = (str) => {
+    return !isNaN(str)
+}

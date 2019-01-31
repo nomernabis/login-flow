@@ -80,8 +80,8 @@ class Login extends Component{
                     <h1>Login</h1>
                     {error && <span>{error.global}</span>}
                     <form onSubmit={this.handleSubmit}>
-                        <Field name="username" type="text" value={this.state.username} onChange={this.handleChange} error={(error && error.username) || this.state.error.username} />
-                        <Field name="password" type="password" value={this.state.password} onChange={this.handleChange} error={(error && error.password) || this.state.error.password} />
+                        <Field name="username" label="Username" type="text" value={this.state.username} onChange={this.handleChange} error={(error && error.username) || this.state.error.username} />
+                        <Field name="password" label="Password" type="password" value={this.state.password} onChange={this.handleChange} error={(error && error.password) || this.state.error.password} />
                         <input disabled={isFetching} type="submit" value="Submit" />
                     </form>
                 </div>

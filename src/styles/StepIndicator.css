@@ -17,3 +17,6 @@
     flex-basis: 0;
     text-align: center;
 }
+.step-item-active{
+    color:#1f6ff7;
+}

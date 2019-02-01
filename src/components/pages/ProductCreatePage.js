@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import StepIndicator from "../StepIndicator"
 import { Field } from "../Field"
+import TextEditor from "../TextEditor"
 
 import { isNumber } from "../../utils"
 
@@ -19,9 +20,8 @@ class ProductCreatePage extends Component{
     }
 
     onChangeNumber(e){
-        console.log('change', e.target.value)
         if(isNumber(e.target.value)){
-            this.setState({ quantity: e.target.value})
+            this.setState({ quantity: e.target.value })
         }
     }
 
@@ -34,6 +34,7 @@ class ProductCreatePage extends Component{
                     <form style={{backgroundColor: 'white',  paddingTop: "32px", paddingBottom: "32px", paddingLeft: "32px"}}>
                         <Field type="text" name="name" label="Name" />
                         <Field type="text" name="quantity" label="Quantity" onChange={this.onChangeNumber} value={this.state.quantity} />
+                        <TextEditor />
                     </form>
                 </div>
             </div>

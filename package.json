@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "cross-fetch": "^3.0.0",
+    "draft-js": "^0.10.5",
+    "immutable": "^4.0.0-rc.12",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^6.0.0",
@@ -32,6 +34,8 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "slate": "^0.44.10",
+    "slate-react": "^0.21.16",
     "svg-inline-loader": "^0.8.0"
   }
 }

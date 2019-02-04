@@ -22,3 +22,20 @@ export const fetchProducts = () => dispatch => {
     .then(items => dispatch(productsSuccess(items)))
     .catch(error => dispatch(productsError(error)))
 }
+
+export const ADD_PRODUCT_NEXT_STEP = 'ADD_PRODUCT_NEXT_STEP'
+export const nextStep = () => ({
+    type: ADD_PRODUCT_NEXT_STEP
+})
+
+export const ADD_PRODUCT_PREV_STEP = 'ADD_PRODUCT_PREV_STEP'
+export const prevStep = () => ({
+    type: ADD_PRODUCT_PREV_STEP
+})
+
+
+export const ADD_PRODUCT_TOGGLE_CATEGORY = 'ADD_PRODUCT_TOGGLE_CATEGORY'
+export const addProductToggleCategory = (category) => ({
+    type: ADD_PRODUCT_TOGGLE_CATEGORY,
+    category
+})

@@ -15,7 +15,7 @@ class ProductsPage extends Component{
                 
                 <div style={{position: "fixed", bottom: "32px", right: "32px"}}>
                     <FloatingActionButton action={() => this.props.history.push('/products/add')} />
-                </div>
+                </div>  
             </div>
         )
     }

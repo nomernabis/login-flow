@@ -13,11 +13,18 @@ class Table extends Component{
     }
 
     render(){
-        const { items, dispatch } = this.props
+        const { items, dispatch, onCategorySelected, selected } = this.props
         return (
             <div className="table">
                 <TableHeader columns={this.props.columns} />
-                {items.map(item => <TableItem item={item} showCols={this.props.showCols} onDelete={() => dispatch(showInfoModal(item))} onEdit={() => dispatch(showModal(item))}/>)}
+                {items.map(item => <TableItem 
+                                        isSelected={selected[item.id]}
+                                        onCategorySelected={() => onCategorySelected(item)}
+                                        selectable={this.props.selectable}
+                                        item={item}
+                                        showCols={this.props.showCols}
+                                        onDelete={() => dispatch(showInfoModal(item))}
+                                        onEdit={() => dispatch(showModal(item))}/>)}
             </div>
         )
     }

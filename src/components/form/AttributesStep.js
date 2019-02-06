@@ -1,27 +1,26 @@
 import React, { Component } from "react"
+import { fetchAttributes } from "../../actions"
 import TableContainer from "../../containers/TableContainer"
-import { fetchCategories } from '../../actions'
 
-class Categories extends Component{
+class AttributesStep extends Component{
     constructor(props){
         super(props)
     }
-
     render(){
         return (
             <div>
                 <div style={{ width: '60%'}}>
                     <TableContainer 
-                        showCols={['name']}
-                        dataName="categories"
+                        showCols={['displayed_name', 'name', ]}
+                        dataName="attributes"
                         selectedDataStore="products"
                         selectable={true}
-                        loadData={fetchCategories}
-                        columns={[ "Name" ]} />
+                        loadData={fetchAttributes}
+                        columns={["Displayed Name", "Name", ""]} />
                 </div>
             </div>
         )
     }
 }
 
-export default Categories
+export default AttributesStep

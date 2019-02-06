@@ -15,7 +15,7 @@ class StepIndicator extends Component{
     }
 }
 
-const mapStateToProps = (state) => ({
-    step: state.products.form.step 
+const mapStateToProps = (state, ownProps) => ({
+    step: state[ownProps.storePath].form.step 
 })
 export default connect(mapStateToProps)(StepIndicator)

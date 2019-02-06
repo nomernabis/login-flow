@@ -21,13 +21,9 @@ class TableContainer extends Component{
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    console.log('shit', state[ownProps.dataName])
-    return {
-        items: state[ownProps.dataName].items,
-        selected: ownProps.selectable ? state[ownProps.selectedData].form.selectedCategories : [] 
-    }
-}
-
+const mapStateToProps = (state, ownProps) => ({
+    items: state[ownProps.dataName].items,
+    selected: ownProps.selectable ? state[ownProps.selectedDataStore].form.selected[ownProps.dataName] : []
+})
 
 export default connect(mapStateToProps)(TableContainer)

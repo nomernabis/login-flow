@@ -20,7 +20,7 @@ class Main extends Component{
                     }}>Logout</a>
                 </div>
                 <div style={{display: "flex", flexDirection: "row", height: "100%"}}>
-                    <NavigationBar items={[{name: 'Categories', route: '/'}, {name: 'Products', route: '/products'}]} />
+                    <NavigationBar items={[{name: 'Categories', route: '/'}, {name: 'Products', route: '/products'}, { name: 'Attributes', route: '/attributes'}]} />
                     <Route component={Content} />
                 </div>
             </div>

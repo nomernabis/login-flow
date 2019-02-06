@@ -10,6 +10,7 @@ import { FloatingActionButton } from "../FloatingActionButton"
 import { prevStep, nextStep } from "../../actions"
 import { connect } from "react-redux"
 import CategoriesStep from "../form/CategoriesStep"
+import AttributesStep from "../form/AttributesStep"
 
 class ProductCreatePage extends Component{
     constructor(props){
@@ -22,7 +23,7 @@ class ProductCreatePage extends Component{
     }
 
     onChange(e){
-
+        
     }
 
     onChangeNumber(e){
@@ -55,8 +56,8 @@ class ProductCreatePage extends Component{
                 break
             case 2:
                 content = (
-                    <div>
-                        Step 3
+                    <div style={{marginTop: "64px"}}>
+                        <AttributesStep />
                     </div>
                 )
                 break

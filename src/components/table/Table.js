@@ -14,11 +14,12 @@ class Table extends Component{
 
     render(){
         const { items, dispatch, onCategorySelected, selected } = this.props
+        console.log('selected', selected)
         return (
             <div className="table">
                 <TableHeader columns={this.props.columns} />
                 {items.map(item => <TableItem 
-                                        isSelected={selected[item.id]}
+                                        isSelected={selected ? selected[item.id] : false}
                                         onCategorySelected={() => onCategorySelected(item)}
                                         selectable={this.props.selectable}
                                         item={item}

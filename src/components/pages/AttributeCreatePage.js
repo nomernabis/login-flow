@@ -9,7 +9,9 @@ class AttributeCreatePage extends Component{
 
     render(){
         return (
-            <AttributeCreateForm />
+            <div style={{ padding: '32px'}}>
+                <AttributeCreateForm />
+            </div>
         )
     }
 }

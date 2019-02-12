@@ -8,7 +8,7 @@ import {
 export const modal = (state={show: false}, action) => {
     switch(action.type){
         case SHOW_MODAL:
-            return {...state, show: true, data: {...action.data}, modal_type: action.modal_type}
+            return {...state, show: true, data: {...action.data}, modal_type: action.modal_type, onClick: action.onClick}
         case HIDE_MODAL:
             return {...state, show: false}
         case SHOW_INFO_MODAL:

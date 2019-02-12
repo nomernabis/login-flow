@@ -1,8 +1,9 @@
 
 export const SHOW_MODAL = 'SHOW_MODAL'
-export const showModal = (data) => ({
+export const showModal = (data, onClick) => ({
     type: SHOW_MODAL,
-    data
+    data,
+    onClick
 })
 
 

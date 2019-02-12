@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import Table from "../components/table/Table"
+import { Table } from "../components/ui/_Table"
 
 import { addProductToggleCategory } from "../actions"
 
@@ -11,7 +11,9 @@ class TableContainer extends Component{
     }
     componentDidMount(){
         const { dispatch, loadData } = this.props
-        dispatch(loadData())
+        if(loadData){
+            dispatch(loadData())
+        }
     }
     render(){
         const { dispatch } = this.props
@@ -22,7 +24,7 @@ class TableContainer extends Component{
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    items: state[ownProps.dataName].items,
+    items: ownProps.mapStateToProps ? ownProps.mapStateToProps(state) : state[ownProps.dataName].items,
     selected: ownProps.selectable ? state[ownProps.selectedDataStore].form.selected[ownProps.dataName] : []
 })
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { AttributeCreateForm } from "../form/_AttributeCreateForm"
+import { AttributeCreateForm } from "../ui/forms/_AttributeCreateForm"
 
 
 class AttributeCreatePage extends Component{

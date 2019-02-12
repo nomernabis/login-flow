@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import TableContainer from "../../containers/TableContainer"
 import { fetchProducts } from "../../actions"
-import { FloatingActionButton } from "../FloatingActionButton"
+import FloatingActionButton from "../ui/FloatingActionButton"
 import { withRouter } from "react-router-dom"
 
 class ProductsPage extends Component{

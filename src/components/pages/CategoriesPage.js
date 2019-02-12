@@ -1,10 +1,9 @@
 import React, { Component } from "react"
-import TableContainer from "../../containers/TableContainer"
-import { FloatingActionButton } from "../FloatingActionButton"
+import { TableContainer } from "../../containers/"
+import FloatingActionButton from "../ui/FloatingActionButton"
 
 import { connect } from "react-redux"
-import { fetchCategories } from "../../actions"
-import { showModal } from "../../actions"
+import { fetchCategories, showModal } from "../../actions"
 
 class CategoriesPage extends Component{
     render(){
@@ -13,7 +12,7 @@ class CategoriesPage extends Component{
             <div style={{padding: "32px", height: "100%", boxSizing: "border-box"}}>
                 <TableContainer showCols={['id', 'name']} dataName="categories" loadData={fetchCategories} columns={["Id", "Name", "Actions"]} />
                 <div style={{position: "fixed", bottom: "32px", right: "32px"}}>
-                    <FloatingActionButton action={() => dispatch(showModal())} />
+                    <FloatingActionButton value="+" action={() => dispatch(showModal())} />
                 </div>
             </div>
         )

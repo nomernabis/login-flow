@@ -33,3 +33,45 @@ export const ATTRIBUTES_PREV_STEP = 'PREV_STEP'
 export const attributesPrevStep = () => ({
     type: ATTRIBUTES_PREV_STEP
 })
+
+export const ATTRIBUTES_ADD_VALUE = 'ATTRIBUTES_ADD_VALUE'
+export const attributesAddValue = value => ({
+    type: ATTRIBUTES_ADD_VALUE,
+    value
+})
+
+export const ATTRIBUTES_FORM_SET_NAME = 'ATTRIBUTES_FORM_SET_NAME'
+export const attributesFormSetName = name => ({
+    type: ATTRIBUTES_FORM_SET_NAME,
+    name,
+})
+
+export const ATTRIBUTES_FORM_SET_DISPLAYED_NAME = 'ATTRIBUTES_FORM_SET_DISPLAYED_NAME'
+export const attributesFormSetDisplayedName = displayed_name => ({
+    type: ATTRIBUTES_FORM_SET_DISPLAYED_NAME,
+    displayed_name
+})
+
+export const ATTRIBUTE_CREATE_REQUESTED = 'ATTRIBUTE_CREATE_REQUESTED'
+export const attributeCreateRequested = () => ({
+    type: ATTRIBUTE_CREATE_REQUESTED
+})
+
+export const ATTRIBUTE_CREATE_SUCCESS = 'ATTRIBUTE_CREATE_SUCCESS'
+export const attributeCreateSuccess = response => ({
+    type: ATTRIBUTE_CREATE_SUCCESS,
+    response
+})
+
+export const ATTRIBUTE_CREATE_ERROR = 'ATTRIBUTE_CREATE_ERROR'
+export const attributeCreateError = error => ({
+    type: ATTRIBUTE_CREATE_ERROR,
+    error
+})
+
+export const fetchAttributeCreate = data => dispatch => {
+    dispatch(attributeCreateRequested())
+    return Api.post('attributes/', data)
+        .then(response => dispatch(attributeCreateSuccess(response)))
+        .catch(error => dispatch(attributeCreateError(error)))
+}

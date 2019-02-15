@@ -14,9 +14,6 @@ import isHotkey from "is-hotkey"
 import FormatToolbar from "./FormatToolbar"
 
 
-import "../styles/TextEditor.css"
-
-
 const initialValue = Value.fromJSON({
     document: {
         nodes: [

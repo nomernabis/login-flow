@@ -9,6 +9,7 @@ class MultiStepForm extends Component{
     }
     render(){
         const { step, dispatch, prevStep, nextStep, storePath, stepsTotal, postData } = this.props
+        console.log("Multisteps", step)
         return (
             <div>
                 <StepIndicator storePath={storePath} steps={this.props.children.map(child => child.props.name)} />
@@ -24,8 +25,11 @@ class MultiStepForm extends Component{
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    step: state[ownProps.storePath].form.step
-})
+const mapStateToProps = (state, ownProps) => {
+    console.log('dadasdasd', ownProps.storePath, state[ownProps.storePath])
+    return {
+        step: state[ownProps.storePath].form.step
+    }
+}
 
 export default connect(mapStateToProps)(MultiStepForm)

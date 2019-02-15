@@ -1,8 +1,5 @@
 import React, { Component } from "react"
-
 import CircleIcon from "../../CirlceIcon"
-
-import "../styles/StepIndicator.css"
 
 
 class StepItem extends Component{

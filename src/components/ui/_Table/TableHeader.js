@@ -5,7 +5,7 @@ class TableHeader extends Component{
         const { columns } = this.props
         return (
             <div className="table-row table-head material-text-header">
-                {columns.map(column => <div className="table-col">{column}</div>)}
+                {columns.map(column => <div className="table-col">{ column }</div>)}
             </div>
         )
     }

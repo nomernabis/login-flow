@@ -39,3 +39,15 @@ export const addProductToggleCategory = (category) => ({
     type: ADD_PRODUCT_TOGGLE_CATEGORY,
     category
 })
+
+export const ADD_PRODUCT_SELECT_ATTRIBUTE = 'ADD_PRODUCT_SELECT_ATTRIBUTE'
+export const addProductSelectAttribute = attribute => ({
+    type: ADD_PRODUCT_SELECT_ATTRIBUTE,
+    attribute
+})
+
+export const ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE = 'ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE'
+export const addProductSelectAttributeValue = value => ({
+    type: ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE,
+    value
+})

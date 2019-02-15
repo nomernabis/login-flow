@@ -1,0 +1,7 @@
+.selectable{
+    cursor: pointer;
+}
+.active{
+    background-color: red;
+    color:white !important;
+}

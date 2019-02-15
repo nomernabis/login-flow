@@ -4,12 +4,14 @@ import {
     PRODUCTS_ERROR,
     ADD_PRODUCT_NEXT_STEP,
     ADD_PRODUCT_PREV_STEP,
-    ADD_PRODUCT_TOGGLE_CATEGORY
+    ADD_PRODUCT_TOGGLE_CATEGORY,
+    ADD_PRODUCT_SELECT_ATTRIBUTE,
+    ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE
 } from "../actions"
 
 const MAX_STEP_INDEX = 4
 
-export const products = (state={items: [], isFetching: false, form: { step: 0, selected: { categories: {}, attributes: {}} }}, action) => {
+export const products = (state={items: [], isFetching: false, form: { step: 0, selected: { categories: {}, attributes: { current: {}, values: {}}} }}, action) => {
     switch(action.type){
         case PRODUCTS_REQUESTED:
             return {...state, isFetching: true}
@@ -37,6 +39,54 @@ export const products = (state={items: [], isFetching: false, form: { step: 0, s
                     },{})}}} 
             }
             return {...state, form: {...state.form, selected: {...state.form.selected, categories: {...state.form.selected.categories, [action.category.id]: action.category}}}}
+        case ADD_PRODUCT_SELECT_ATTRIBUTE:
+            return {
+                ...state, form: {
+                    ...state.form,
+                    selected: {
+                        ...state.form.selected,
+                        attributes: {
+                            ...state.form.selected.attributes,
+                            current: action.attribute
+                        }
+                    }
+                }
+            }
+        case ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE:
+            if(state.form.selected.attributes.values[action.value.id]){
+                return {
+                    ...state, form: {
+                        ...state.form, selected: {
+                            ...state.form.selected,
+                            attributes: {
+                                ...state.form.selected.attributes,
+                                values: Object.keys(state.form.selected.attributes.values)
+                                    .filter(id => id != action.value.id)
+                                    .reduce((result, id) => {
+                                        result[id] = state.form.selected.attributes.values[id]
+                                        return result
+                                }, {})
+                            }
+                        }
+                    }
+                }
+            } else {
+                return {
+                    ...state, form: {
+                        ...state.form,
+                        selected: {
+                            ...state.form.selected,
+                            attributes: {
+                                ...state.form.selected.attributes,
+                                values: {
+                                    ...state.form.selected.attributes.values,
+                                    [action.value.id] : action.value  
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         default:
             return state
     }

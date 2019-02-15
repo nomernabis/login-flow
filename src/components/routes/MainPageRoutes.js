@@ -1,12 +1,8 @@
 import React, { Component } from "react"
 
-import CategoriesPage from "../pages/CategoriesPage"
-import ProductsPage from "../pages/ProductsPage"
-import ProductCreatePage from "../ui/forms/_ProductCreateForm/ProductCreateForm"
-import AttributesPage from "../pages/AttributesPage"
-
+import { CategoriesPage, ProductsPage, ProductCreatePage,
+         AttributesPage, AttributeCreatePage } from "../pages"
 import { Switch, Route } from "react-router-dom"
-import AttributeCreatePage from "../pages/AttributeCreatePage"
 
 class MainPageRoutes extends Component{
     render(){

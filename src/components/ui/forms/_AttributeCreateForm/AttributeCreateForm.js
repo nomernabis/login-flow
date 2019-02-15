@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { MultiStepForm, Step } from "../../forms/_MultiStepForm"
+import { MultiStepForm, Step } from "../_MultiStepForm"
 import { AddAttributeName, AddAttributeValues } from "./index"
 import { attributesNextStep, attributesPrevStep, fetchAttributeCreate } from "../../../../actions"
 import { connect } from "react-redux"

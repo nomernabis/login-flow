@@ -1,8 +1,7 @@
 import React, { Component } from "react"
-import { StepItem } from "./StepItem"
+import StepItem from "./StepItem"
 import { connect } from "react-redux"
 
-import "../styles/StepIndicator.css"
 
 class StepIndicator extends Component{
     render(){

@@ -76,3 +76,22 @@ export const addProductSwapImages = (from, to) => ({
     from,
     to
 })
+
+export const ADD_PRODUCT_NAME_CHANGED = 'ADD_PRODUCT_NAME_CHANGED'
+export const ADD_PRODUCT_QUANTITY_CHANGED = 'ADD_PRODUCT_QUANTITY_CHANGED'
+export const ADD_PRODUCT_DESCRIPTION_CHANGED = 'ADD_PRODUCT_DESCRIPTION_CHANGED'
+
+export const addProductNameChanged = name => ({
+    type: ADD_PRODUCT_NAME_CHANGED,
+    name
+})
+
+export const addProductDescriptionChanged = description => ({
+    type: ADD_PRODUCT_DESCRIPTION_CHANGED,
+    description
+})
+
+export const addProductQuantityChanged = quantity => ({
+    type: ADD_PRODUCT_QUANTITY_CHANGED,
+    quantity
+})

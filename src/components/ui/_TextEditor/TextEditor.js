@@ -13,6 +13,8 @@ import isHotkey from "is-hotkey"
 
 import FormatToolbar from "./FormatToolbar"
 
+import { connect } from "react-redux"
+import { addProductDescriptionChanged } from "../../../actions"
 
 const initialValue = Value.fromJSON({
     document: {
@@ -25,7 +27,7 @@ const initialValue = Value.fromJSON({
                         object: 'text',
                         leaves: [
                             {
-                                text: 'My First Paragraph!'
+                                text: ''
                             }
                         ]
                     }
@@ -61,7 +63,7 @@ class TextEditor extends Component{
     }
 
     onChange({ value }){
-        this.setState({ value })
+        this.props.dispatch(addProductDescriptionChanged(value))
     }
 
     renderMark(props){
@@ -130,8 +132,6 @@ class TextEditor extends Component{
     }
 
     render(){
-        const { value } = this.state
-        console.log('has lits', this.isMarkActive('list'))
         return (
              <div className="text-editor">
                 <FormatToolbar>
@@ -153,7 +153,7 @@ class TextEditor extends Component{
                 </FormatToolbar>
                 <Editor 
                     ref={ node => this.editor = node }
-                    value = {this.state.value} 
+                    value = {this.props.value} 
                     onChange = {this.onChange} 
                     onKeyDown = {this.onKeyDown}
                     renderMark = {this.renderMark} />
@@ -162,4 +162,8 @@ class TextEditor extends Component{
     }
 }
 
-export default TextEditor
+const mapStateToProps = state => ({
+    value: state.products.form.description
+})
+
+export default connect(mapStateToProps)(TextEditor)

@@ -10,12 +10,38 @@ import {
     ADD_PRODUCT_SET_IMAGES,
     ADD_PRODUCT_ADD_IMAGE,
     ADD_PRODUCT_DELETE_IMAGE,
-    ADD_PRODUCT_SWAP_IMAGES
+    ADD_PRODUCT_SWAP_IMAGES,
+    ADD_PRODUCT_NAME_CHANGED,
+    ADD_PRODUCT_QUANTITY_CHANGED,
+    ADD_PRODUCT_DESCRIPTION_CHANGED
 } from "../actions"
+
+import { Value } from "slate"
+
+const initialValue = Value.fromJSON({
+    document: {
+        nodes: [
+            {
+                object: 'block',
+                type: 'paragraph',
+                nodes: [
+                    {
+                        object: 'text',
+                        leaves: [
+                            {
+                                text: ''
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+})
 
 const MAX_STEP_INDEX = 4
 
-export const products = (state={items: [], isFetching: false, form: { step: 0, selected: { categories: {}, images: [], attributes: { current: {}, values: {}}} }}, action) => {
+export const products = (state={items: [], isFetching: false, form: { step: 0, name: '', quantity: 0, description: initialValue, selected: { categories: {}, images: [], attributes: { current: {}, values: {}}} }}, action) => {
     switch(action.type){
         case PRODUCTS_REQUESTED:
             return {...state, isFetching: true}
@@ -138,6 +164,28 @@ export const products = (state={items: [], isFetching: false, form: { step: 0, s
                             return image
                         })
                     }
+                }
+            }
+        case ADD_PRODUCT_NAME_CHANGED:
+            return {
+                ...state, form:{
+                    ...state.form, 
+                    name: action.name
+                }
+            }
+        case ADD_PRODUCT_QUANTITY_CHANGED:
+            return {
+                ...state, form: {
+                    ...state.form,
+                    quantity: action.quantity
+                }
+            }
+
+        case ADD_PRODUCT_DESCRIPTION_CHANGED:
+            return {
+                ...state, form: {
+                    ...state.form,
+                    description: action.description
                 }
             }
         default:

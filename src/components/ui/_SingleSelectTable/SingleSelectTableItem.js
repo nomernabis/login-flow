@@ -1,6 +1,6 @@
 import React from "react"
 
-import "../../../styles/TableItem.css"
+import "../../../styles/Table.css"
 
 const SingleSelectTableItem = ({ item, displayedCols, isActive, onClick }) => {
     let content

@@ -3,7 +3,7 @@ import React, { Component } from "react"
 import { prevStep, nextStep } from "../../../../actions"
 import { connect } from "react-redux"
 import { MultiStepForm, Step } from "../_MultiStepForm"
-import { ProductInfoStep, CategoriesStep, AttributesStep } from "."
+import { ProductInfoStep, CategoriesStep, AttributesStep, ImageUploadStep } from "."
 
 
 class ProductCreateForm extends Component{
@@ -20,7 +20,7 @@ class ProductCreateForm extends Component{
                     <Step name="Product Info" component={ProductInfoStep} />
                     <Step name="Categories" component={CategoriesStep} />
                     <Step name="Attributes" component={AttributesStep} />
-                    <Step name="Images" component={() => <div>Images</div>} />
+                    <Step name="Images" component={ImageUploadStep} />
                     <Step name="Review" component={() => <div>Review</div>} />
                 </MultiStepForm>
             </div>

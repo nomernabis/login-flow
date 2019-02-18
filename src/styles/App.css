@@ -51,3 +51,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+.no-user-select{
+    user-select: none;
+    -moz-user-select: none;
+}

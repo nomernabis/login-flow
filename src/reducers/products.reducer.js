@@ -6,12 +6,16 @@ import {
     ADD_PRODUCT_PREV_STEP,
     ADD_PRODUCT_TOGGLE_CATEGORY,
     ADD_PRODUCT_SELECT_ATTRIBUTE,
-    ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE
+    ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE,
+    ADD_PRODUCT_SET_IMAGES,
+    ADD_PRODUCT_ADD_IMAGE,
+    ADD_PRODUCT_DELETE_IMAGE,
+    ADD_PRODUCT_SWAP_IMAGES
 } from "../actions"
 
 const MAX_STEP_INDEX = 4
 
-export const products = (state={items: [], isFetching: false, form: { step: 0, selected: { categories: {}, attributes: { current: {}, values: {}}} }}, action) => {
+export const products = (state={items: [], isFetching: false, form: { step: 0, selected: { categories: {}, images: [], attributes: { current: {}, values: {}}} }}, action) => {
     switch(action.type){
         case PRODUCTS_REQUESTED:
             return {...state, isFetching: true}
@@ -84,6 +88,55 @@ export const products = (state={items: [], isFetching: false, form: { step: 0, s
                                 }
                             }
                         }
+                    }
+                }
+            }
+        case ADD_PRODUCT_SET_IMAGES:
+            return {
+                ...state, form: {
+                    ...state.form, 
+                    selected: {
+                        ...state.form.selected,
+                        images: action.images
+                    }
+                }
+            }
+        case ADD_PRODUCT_ADD_IMAGE:
+            return {
+                ...state, form: {
+                    ...state.form,
+                    selected: {
+                        ...state.form.selected,
+                        images: [...state.form.selected.images, action.image]
+                    }
+                }
+            }
+        case ADD_PRODUCT_DELETE_IMAGE:
+            return {
+                ...state, form: {
+                    ...state.form, 
+                    selected: {
+                        ...state.form.selected,
+                        images: state.form.selected.images.filter((image, index) => index != action.index)
+                    }
+                }
+            }
+
+        case ADD_PRODUCT_SWAP_IMAGES:
+            return {
+                ...state, form: {
+                    ...state.form, 
+                    selected: {
+                        ...state.form.selected,
+                        images: state.form.selected.images.map((image, index) => {
+                            if(index == action.from){
+                                return state.form.selected.images[action.to]
+                            } else
+                            if(index == action.to){
+                                return state.form.selected.images[action.from]
+                            }
+                            return image
+                        })
                     }
                 }
             }

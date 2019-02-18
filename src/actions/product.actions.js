@@ -51,3 +51,28 @@ export const addProductSelectAttributeValue = value => ({
     type: ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE,
     value
 })
+
+export const ADD_PRODUCT_SET_IMAGES = 'ADD_PRODUCT_SET_IMAGES'
+export const addProductSetImages = images => ({
+    type: ADD_PRODUCT_SET_IMAGES,
+    images
+})
+
+export const ADD_PRODUCT_ADD_IMAGE = 'ADD_PRODUCT_ADD_IMAGE'
+export const addProductAddImage = image => ({
+    type: ADD_PRODUCT_ADD_IMAGE,
+    image
+})
+
+export const ADD_PRODUCT_DELETE_IMAGE = 'ADD_PRODUCT_DELETE_IMAGE'
+export const addProductDeleteImage = index => ({
+    type: ADD_PRODUCT_DELETE_IMAGE,
+    index
+})
+
+export const ADD_PRODUCT_SWAP_IMAGES = 'ADD_PRODUCT_SWAP_IMAGES'
+export const addProductSwapImages = (from, to) => ({
+    type: ADD_PRODUCT_SWAP_IMAGES,
+    from,
+    to
+})

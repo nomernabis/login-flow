@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import Field from "../Field"
-import { TextEditor } from "../../_TextEditor"
+import { TextEditor } from "../../TextEditor"
 import { connect } from "react-redux"
-
 import { addProductNameChanged, addProductQuantityChanged, addProductDescriptionChanged } from "../../../../actions"
+import { isNumber } from "../../../../utils"
 
 class ProductInfoStep extends Component{
     constructor(props){
@@ -16,22 +16,33 @@ class ProductInfoStep extends Component{
         this.props.dispatch(addProductNameChanged(e.target.value))
     }
     onQuantityChanged(e){
-        this.props.dispatch(addProductQuantityChanged(e.target.value))
+        const { value } = e.target
+        console.log('value', value, isNumber(value))
+        if(isNumber(value)){
+            this.props.dispatch(addProductQuantityChanged(e.target.value))
+        }
     }
-    onDescriptionChanged(e){
-        this.props.dispatch(addProductDescriptionChanged(e.target.value))
+    onDescriptionChanged(value){
+        this.props.dispatch(addProductDescriptionChanged(value))
     }
     render(){
+        const { error } = this.props
         return (
             <div>
                 <form style={{backgroundColor: 'white',  paddingTop: "32px", paddingBottom: "32px", paddingLeft: "32px"}}>
-                    <Field type="text" name="name" label="Name" onChange={this.onNameChanged} />
-                    <Field type="text" name="quantity" label="Quantity" onChange={this.onQuantityChanged} />
+                    <Field type="text" name="name" label="Name" onChange={this.onNameChanged} value={this.props.name} error={ error && error.name} />
+                    <Field type="text" name="quantity" label="Quantity" onChange={this.onQuantityChanged} value={this.props.quantity} />
                 </form>
-                <TextEditor onChange={this.onDescriptionChanged} />
+                <TextEditor description={this.props.description} onChange={this.onDescriptionChanged} />
             </div>
         )
     }
 }
 
-export default connect()(ProductInfoStep)
+const mapStateToProps = state => ({
+    name: state.products.form.name,
+    quantity: state.products.form.quantity,
+    description: state.products.form.description,
+    error: state.products.form.error
+})
+export default connect(mapStateToProps)(ProductInfoStep)

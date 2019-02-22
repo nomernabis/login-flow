@@ -7,6 +7,9 @@ const headerJson = {
     "Content-Type": "application/json"
 }
 
+const headerMultipart = {
+    "Content-Type": "multipart/form-data" 
+}
 
 const Api = {}
 
@@ -29,15 +32,23 @@ const handleErrors = (response) => {
 const call = (url, method="get", headers, body) => {
     let config = {
         method,
-        headers,
-        body: JSON.stringify(body)
+        body: body instanceof FormData ? body : JSON.stringify(body)
     }
     return fetch(url, config).catch(error => Promise.resolve(error)).then(handleErrors)
 }
 
 Api.call = call
-Api.post = (url, data) => {
-    return call(API_URL + url, "post", headerJson, data)
+Api.post = (url, data, isAuthorized = true, multipart=false) => {
+    let header
+    if(multipart){
+       header = headerMultipart
+    } else{
+        header = headerJson
+    }
+    // if(isAuthorized){
+    //     header["Authorization"] = "Token " + localStorage.getItem("token")
+    // }
+    return call(API_URL + url, "post", header, data)
 }
 
 Api.get = (url, isAuthorized = true) => {

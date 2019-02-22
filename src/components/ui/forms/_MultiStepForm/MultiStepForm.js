@@ -8,7 +8,7 @@ class MultiStepForm extends Component{
         super(props)
     }
     render(){
-        const { step, dispatch, prevStep, nextStep, storePath, stepsTotal, postData } = this.props
+        const { step, dispatch, prevStep, nextStep, storePath, stepsTotal, postData, validate } = this.props
         console.log("Multisteps", step)
         return (
             <div>
@@ -18,7 +18,11 @@ class MultiStepForm extends Component{
                 </div>
                 <div style={{position: "fixed", bottom: "32px", right: "32px"}}>
                     <FloatingActionButton value="L" action={() => dispatch(prevStep())} />
-                    <FloatingActionButton value="R" action={(stepsTotal - 1) == step ? postData: () => dispatch(nextStep())} />
+                    <FloatingActionButton value="R" action={(stepsTotal - 1) == step ? postData: () =>{
+                         if(validate(this.props)){
+                             dispatch(nextStep())
+                         }
+                    }} />
                 </div>
             </div>
         )

@@ -95,3 +95,33 @@ export const addProductQuantityChanged = quantity => ({
     type: ADD_PRODUCT_QUANTITY_CHANGED,
     quantity
 })
+
+export const ADD_PRODUCT_SET_ERROR = 'ADD_PRODUCT_SET_ERROR'
+export const addProductSetError = error => ({
+    type: ADD_PRODUCT_SET_ERROR,
+    error
+})
+
+export const ADD_PRODUCT_REQUESTED = 'ADD_PRODUCT_REQUESTED'
+export const addProductRequested = () => ({
+    type: ADD_PRODUCT_REQUESTED,
+})
+
+export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS'
+export const addProductSuccess = response => ({
+    type: ADD_PRODUCT_SUCCESS,
+    response
+})
+
+export const ADD_PRODUCT_ERROR = 'ADD_PRODUCT_ERROR'
+export const addProductError = error => ({
+    type: ADD_PRODUCT_ERROR,
+    error
+})
+
+export const fetchAddProduct = data => dispatch => {
+    dispatch(addProductRequested())
+    return Api.post('products/', data, true, true)
+        .then(response => dispatch(addProductSuccess(response)))
+        .catch(error => dispatch(addProductError(error)))
+}

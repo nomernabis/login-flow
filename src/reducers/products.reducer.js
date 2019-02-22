@@ -13,35 +13,16 @@ import {
     ADD_PRODUCT_SWAP_IMAGES,
     ADD_PRODUCT_NAME_CHANGED,
     ADD_PRODUCT_QUANTITY_CHANGED,
-    ADD_PRODUCT_DESCRIPTION_CHANGED
+    ADD_PRODUCT_DESCRIPTION_CHANGED,
+    ADD_PRODUCT_SET_ERROR
 } from "../actions"
 
-import { Value } from "slate"
+import { EditorState } from "draft-js"
 
-const initialValue = Value.fromJSON({
-    document: {
-        nodes: [
-            {
-                object: 'block',
-                type: 'paragraph',
-                nodes: [
-                    {
-                        object: 'text',
-                        leaves: [
-                            {
-                                text: ''
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
-})
 
 const MAX_STEP_INDEX = 4
 
-export const products = (state={items: [], isFetching: false, form: { step: 0, name: '', quantity: 0, description: initialValue, selected: { categories: {}, images: [], attributes: { current: {}, values: {}}} }}, action) => {
+export const products = (state={items: [], isFetching: false, form: { step: 0, name: '', quantity: 0, description: EditorState.createEmpty(), selected: { categories: {}, images: [], attributes: { current: {}, values: {}}} }}, action) => {
     switch(action.type){
         case PRODUCTS_REQUESTED:
             return {...state, isFetching: true}
@@ -186,6 +167,13 @@ export const products = (state={items: [], isFetching: false, form: { step: 0, n
                 ...state, form: {
                     ...state.form,
                     description: action.description
+                }
+            }
+        case ADD_PRODUCT_SET_ERROR:
+            return {
+                ...state, form: {
+                    ...state.form,
+                    error: action.error
                 }
             }
         default:

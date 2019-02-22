@@ -55,3 +55,29 @@ body{
     user-select: none;
     -moz-user-select: none;
 }
+.text-editor{
+    background: white;
+    margin-top: 16px;
+    padding: 40px;
+    box-shadow: rgba(118, 143, 255, 0.1) 0px 16px 24px 0;
+}
+.format-toolbar{
+    display: flex;
+    border-bottom: solid 1.7px rgba(199, 198, 255, 0.15);
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+.tooltip-icon-button{
+    border: 0;
+    background: white;
+}
+.RichEditor-styleButton{
+    cursor: pointer;
+    padding: 0 8px;
+}
+.RichEditor-normal{
+    color: rgb(204, 204, 204); 
+}
+.RichEditor-active{
+    color: black;
+}

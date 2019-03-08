@@ -34,8 +34,6 @@ class TextEditor extends Component{
             .getCurrentContent()
             .getBlockForKey(selection.getStartKey())
             .getType()
-        
-        console.log('blockType', blockType)
         return (
                 <div className="text-editor">
                     <div style={{ borderBottom: "1px solid rgba(0, 0, 0, 0.3)", padding: '8px'}}>
@@ -46,7 +44,7 @@ class TextEditor extends Component{
                         />
                          <StyleButton
                             active = {currentStyle.has('ITALIC')}
-                            label='I' 
+                            label='I'
                             onToggle = {() => this.onStyleButtonClick('ITALIC')}
                         />
                          <StyleButton

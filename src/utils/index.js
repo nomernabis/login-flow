@@ -17,6 +17,28 @@ export const newErrorObj = error => {
     }
 }
 
+export const checkErrorObj = error => {
+    if(!error) return
+    const keys = Object.keys(error)
+    if(keys.length != 0){
+        if(typeof error[keys[0]] == "string"){
+            return 'local'
+        }
+        return 'server'
+    }
+    return
+}
+
+export const formatServerError = error => {
+    if(!error) return 
+    let newError = {}
+    const keys = Object.keys(error)
+    if(keys.length != 0){
+        keys.forEach(key => newError[key] = error[key][0])
+    }
+    return newError
+}
+
 export const isNumber = (str) => {
     return !isNaN(str)
 }

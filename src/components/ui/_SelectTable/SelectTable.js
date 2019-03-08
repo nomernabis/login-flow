@@ -9,11 +9,12 @@ import "../../../styles/Table.css"
 class SelectTable extends Component{
     render(){
         const { items, displayedCols, header, selected } = this.props
+        console.log('select Table', selected)
         return (
             <div className="table">
                 <TableHeader columns={header} />
                     {items && items.length > 0 ? items.map( item => 
-                        <SelectTableItem isActive={selected[item.id]} onClick={() => this.props.onClick(item)} displayedCols={displayedCols} item={item} />) 
+                        <SelectTableItem isActive={selected && selected[item.id]} onClick={() => this.props.onClick(item)} displayedCols={displayedCols} item={item} />) 
                             : <div>No data</div>}
             </div>
         )

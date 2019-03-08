@@ -5,7 +5,16 @@ import { connect } from "react-redux"
 
 class StepIndicator extends Component{
     render(){
-        const content = this.props.steps.map((step, index) => <StepItem name={step} number={index+1} isActive={index == this.props.step} />)
+        const { errors } = this.props
+        const content = this.props.steps.map((step, index) => 
+            <StepItem 
+                isCompleted={index < this.props.lastStep} 
+                onClick={this.props.onClick} 
+                name={step} 
+                number={index+1} 
+                isActive={index == this.props.step}
+                error={errors[index]}
+            />)
         return (
             <div className="step-indicator">
                 {content}
@@ -15,6 +24,7 @@ class StepIndicator extends Component{
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    step: state[ownProps.storePath].form.step 
+    step: state[ownProps.storePath].form.step,
+    lastStep: state[ownProps.storePath].form.lastStep 
 })
 export default connect(mapStateToProps)(StepIndicator)

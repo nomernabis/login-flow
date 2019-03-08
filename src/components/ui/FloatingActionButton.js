@@ -1,9 +1,10 @@
 import React from "react"
 import "../../styles/FloatingActionButton.css"
+import { Icon } from "react-icons-kit"
 
-const FloatingActionButton = ({ action, value }) => (
+const FloatingActionButton = ({ action, icon}) => (
     <button className="fab" onClick={action}>
-        {value}
+        <Icon size={32} icon={icon}  />
     </button>
 )
 

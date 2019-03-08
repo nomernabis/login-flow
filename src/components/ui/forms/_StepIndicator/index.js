@@ -1,6 +1,6 @@
 import StepIndicator from "./StepIndicator"
 import StepItem from "./StepItem"
 
-import "./index.css"
+import "../../../../styles/StepIndicator.css"
 
 export { StepIndicator, StepItem }

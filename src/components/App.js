@@ -1,6 +1,7 @@
 import React from "react"
 import { AppRoutes } from "./routes"
 import Modal from "./ui/Modal"
+import AppLoader from "./ui/AppLoader"
 
 import "../styles/App.css"
 
@@ -8,6 +9,7 @@ const App = () => (
     <div>
         <AppRoutes />
         <Modal />
+        <AppLoader />
     </div>
 )
 

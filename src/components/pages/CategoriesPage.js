@@ -4,6 +4,7 @@ import FloatingActionButton from "../ui/FloatingActionButton"
 
 import { connect } from "react-redux"
 import { fetchCategories, showModal } from "../../actions"
+import { ic_add } from "react-icons-kit/md"
 
 class CategoriesPage extends Component{
     render(){
@@ -12,7 +13,7 @@ class CategoriesPage extends Component{
             <div style={{padding: "32px", height: "100%", boxSizing: "border-box"}}>
                 <TableContainer showCols={['id', 'name']} dataName="categories" loadData={fetchCategories} columns={["Id", "Name", "Actions"]} />
                 <div style={{position: "fixed", bottom: "32px", right: "32px"}}>
-                    <FloatingActionButton value="+" action={() => dispatch(showModal())} />
+                    <FloatingActionButton icon={ic_add} action={() => dispatch(showModal())} />
                 </div>
             </div>
         )

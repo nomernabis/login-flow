@@ -33,6 +33,12 @@ export const prevStep = () => ({
     type: ADD_PRODUCT_PREV_STEP
 })
 
+export const ADD_PRODUCT_TO_STEP = 'ADD_PRODUCT_TO_STEP'
+export const addProductToStep = step => ({
+    type: ADD_PRODUCT_TO_STEP,
+    step
+})
+
 
 export const ADD_PRODUCT_TOGGLE_CATEGORY = 'ADD_PRODUCT_TOGGLE_CATEGORY'
 export const addProductToggleCategory = (category) => ({
@@ -47,9 +53,10 @@ export const addProductSelectAttribute = attribute => ({
 })
 
 export const ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE = 'ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE'
-export const addProductSelectAttributeValue = value => ({
+export const addProductSelectAttributeValue = (value, attributeId) => ({
     type: ADD_PRODUCT_SELECT_ATTRIBUTE_VALUE,
-    value
+    value,
+    attributeId
 })
 
 export const ADD_PRODUCT_SET_IMAGES = 'ADD_PRODUCT_SET_IMAGES'
@@ -119,9 +126,20 @@ export const addProductError = error => ({
     error
 })
 
+export const ADD_PRODUCT_CLEAR_ERROR = 'ADD_PRODUCT_CLEAR_ERROR'
+export const addProductClearError = errorName => ({
+    type: ADD_PRODUCT_CLEAR_ERROR,
+    errorName
+})
+
 export const fetchAddProduct = data => dispatch => {
     dispatch(addProductRequested())
     return Api.post('products/', data, true, true)
         .then(response => dispatch(addProductSuccess(response)))
-        .catch(error => dispatch(addProductError(error)))
+        .catch(error => dispatch(addProductSetError(error)))
 }
+
+export const CLEAR_PRODUCT_DATA = 'CLEAR_PRODUCT_DATA'
+export const clearProductData = () => ({
+    type: CLEAR_PRODUCT_DATA
+})

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 
 import { connect } from "react-redux"
-import { showModal, attributesAddValue } from "../../../../actions"
+import { showModal, attributesAddValue, hideModal } from "../../../../actions"
 
 import { TableContainer } from "../../../../containers"
 
@@ -22,7 +22,7 @@ class AddAttributeValues extends Component{
 }
 
 const mapDispatchToProps = dispatch => ({
-    showModal: () => dispatch(showModal('', name => dispatch(attributesAddValue(name))))
+    showModal: () => dispatch(showModal('ADD_VALUE_MODAL', 'Fuck You!', () => console.log('yes'), () => dispatch(hideModal())))
 })
 
 export default connect(null, mapDispatchToProps)(AddAttributeValues)

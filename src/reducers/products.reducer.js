@@ -18,7 +18,8 @@ import {
     ADD_PRODUCT_TO_STEP,
     ADD_PRODUCT_CLEAR_ERROR,
     ADD_PRODUCT_SUCCESS,
-    ADD_PRODUCT_REQUESTED
+    ADD_PRODUCT_REQUESTED,
+    CLEAR_PRODUCT_DATA
 } from "../actions"
 
 import { EditorState } from "draft-js"
@@ -236,6 +237,16 @@ export const products = (state={items: [], isFetching: false,  form: { step: 0, 
                         return result
                     }, {})
                 }
+            }
+        case CLEAR_PRODUCT_DATA:
+            return {
+                ...state,
+                form: { step: 0, 
+                    lastStep: 0, 
+                    name: '', 
+                    quantity: 0, 
+                    description: EditorState.createEmpty(), 
+                    selected: { categories: {}, images: [], attributes: { current: {} }} }
             }
         default:
             return state

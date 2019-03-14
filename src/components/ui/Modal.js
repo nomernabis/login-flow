@@ -25,7 +25,6 @@ class Modal extends Component {
         this.deleteItem = this.deleteItem.bind(this)
     }
     componentWillReceiveProps(nextProps){
-        console.log(nextProps)
         if(nextProps.name){
             this.setState({ name: nextProps.name })
         }

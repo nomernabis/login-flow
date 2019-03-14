@@ -9,9 +9,18 @@ class AttributeCreateForm extends Component{
         super(props)
     }
     render(){
-        const { name, displayed_name, values, dispatch } = this.props
+        const { name, displayed_name, values, dispatch, step } = this.props
         return (
-            <MultiStepForm stepsTotal={2} postData={() => {
+            <MultiStepForm validate={() => {
+                switch(step){
+                    case 0:
+                        return true
+                    case 1:
+                        return true
+                    default:
+                        return true
+                }
+            }} stepsTotal={2} postData={() => {
                 dispatch(fetchAttributeCreate({ name, displayed_name, values }))
             }} prevStep={attributesPrevStep} nextStep={attributesNextStep} storePath="attributes" >
                 <Step name="Attribute Name" component={AddAttributeName} />
@@ -24,7 +33,8 @@ class AttributeCreateForm extends Component{
 const mapStateToProps = state => ({
     name: state.attributes.form.name,
     displayed_name: state.attributes.form.displayed_name,
-    values: state.attributes.form.values
+    values: state.attributes.form.values,
+    step: state.attributes.form.step
 })
 
 export default connect(mapStateToProps)(AttributeCreateForm)

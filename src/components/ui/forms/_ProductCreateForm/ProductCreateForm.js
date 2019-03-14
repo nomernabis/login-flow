@@ -2,7 +2,7 @@ import React, { Component } from "react"
 
 import { prevStep, nextStep, addProductSetError, fetchAddProduct,
     addProductNameChanged, addProductQuantityChanged, addProductDescriptionChanged, addProductToggleCategory,
-    addProductToStep, addProductClearError, showLoader, hideLoader } from "../../../../actions"
+    addProductToStep, addProductClearError, showLoader, hideLoader, clearProductData } from "../../../../actions"
 import { connect } from "react-redux"
 import { MultiStepForm, Step } from "../_MultiStepForm"
 import { ProductInfoStep, CategoriesStep, AttributesStep, ImageUploadStep } from "."
@@ -83,6 +83,7 @@ class ProductCreateForm extends Component{
             console.log('response', response)
             //navigate
             //clear product data
+            this.props.dispatch(clearProductData())
             this.props.history.push('/products')
         }
         return (
@@ -98,10 +99,11 @@ class ProductCreateForm extends Component{
                             let cats = Object.keys(selectedCategories).map(id => Number(id))
 
                             console.log('cats new', cats)
+                            console.log('attribute_values', attributes)
 
                             formData.append('image', blob)
                             formData.append('categories', cats)
-                            formData.append('attributes', attributes)
+                            formData.append('attribute_values', attributes)
                             formData.append('name', name)
                             formData.append('description', description)
                             formData.append('quantity', quantity)

@@ -9,7 +9,6 @@ class Table extends Component{
         super(props)
     }
     componentDidMount(){
-        console.log('table did mount')
         this.props.loadData()
     }
     render(){

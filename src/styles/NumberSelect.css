@@ -1,0 +1,55 @@
+.select-box--container{
+    display: flex;
+    width: 60px;
+    position: relative;
+}
+.select-box--selected-item-container{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.select-box--selected-item{
+    padding: 4px 8px;
+    color: rgba(0, 0, 0, .54);
+}
+.select-box--arrow{
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+.select-box--arrow-down{
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-color: rgba(0, 0, 0, .87) transparent transparent transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+}
+.select-box--arrow-up{
+    width: 0;
+    height: 0;
+    border: 7px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, .87) transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -75%);
+}
+.select-box--items{
+    position: absolute;
+    top: 100%;
+    background: white;
+    width: 100%;
+    cursor: pointer;
+}
+.select-box--items div{
+    padding: 4px 8px;
+    color: rgba(0, 0, 0, .54);
+    border-top: 1px solid black;
+}

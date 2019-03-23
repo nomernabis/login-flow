@@ -14,12 +14,13 @@ class NumberSelect extends Component{
         }))
     }
     render(){   
+        console.log('value', this.props.value)
         return <div style={{display: 'flex', alignItems: 'center'}}> 
-                   <span style={{marginRight: '8px', color: 'rgba(0, 0, 0, .54)'}}> Show: </span>
+                   <span style={{marginRight: '8px', color: 'rgba(0, 0, 0, .54)'}}>{this.props.text}</span>
                     <div  className="select-box--container">
                         <div onClick={this.dropDown} className="select-box--selected-item-container">
                             <div className="select-box--selected-item">
-                                {this.props.limit}
+                                {this.props.value.name}
                             </div>
                             <div className="select-box--arrow">
                                 <span className={`${this.state.showItems ? "select-box--arrow-up": "select-box--arrow-down"}`} />
@@ -30,7 +31,7 @@ class NumberSelect extends Component{
                                 this.state.items.map(item => <div 
                                     key={item.value}
                                     onClick={() => {
-                                        this.props.onChange(item.value)
+                                        this.props.onChange(item)
                                         this.dropDown()
                                     }}
                                     className={this.state.selectedItem === item ? 'select-box--selected' : ''}

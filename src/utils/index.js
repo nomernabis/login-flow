@@ -42,3 +42,19 @@ export const formatServerError = error => {
 export const isNumber = (str) => {
     return !isNaN(str)
 }
+
+export const validateEmail = email => {
+    if(email == ''){
+        return 'Email is empty'
+    } else {
+        if(email.length < 5 ){
+            return 'Email is short'
+        } else if(email.length > 50){
+            return 'Email is too long'
+        }
+
+        if(email.indexOf('@') == -1){
+            return 'Not valid email'
+        } 
+    }
+}

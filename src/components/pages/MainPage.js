@@ -21,7 +21,8 @@ class MainPage extends Component{
                 <div style={{display: "flex", flexDirection: "row", height: "100%"}}>
                     <NavigationBar items={[ { name: 'Categories', route: '/'},
                                             { name: 'Products', route: '/products'},
-                                            { name: 'Attributes', route: '/attributes'}]} />
+                                            { name: 'Attributes', route: '/attributes'}, 
+                                            { name: 'Users', route: '/users'}]} />
                     <MainPageRoutes />
                 </div>
             </div>

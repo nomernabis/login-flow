@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 
 import { CategoriesPage, ProductsPage, ProductCreatePage,
-         AttributesPage, AttributeCreatePage } from "../pages"
+         AttributesPage, AttributeCreatePage, UsersPage, UserFormPage, UserEditPage} from "../pages"
 import { Switch, Route } from "react-router-dom"
 
 class MainPageRoutes extends Component{
@@ -14,6 +14,9 @@ class MainPageRoutes extends Component{
                     <Route exact path="/products/add" component={ProductCreatePage} />
                     <Route exact path="/attributes" component={AttributesPage} />
                     <Route exact path="/attributes/add" component={AttributeCreatePage} />
+                    <Route exact path="/users" component={UsersPage} />
+                    <Route exact path="/users/add" component={UserFormPage} />
+                    <Route exact path="/users/edit/:id" component={UserEditPage} />
                </Switch>
             </div>
         )

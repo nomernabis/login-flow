@@ -32,7 +32,8 @@ const handleErrors = (response) => {
 const call = (url, method="get", headers, body) => {
     let config = {
         method,
-        body: body instanceof FormData ? body : JSON.stringify(body)
+        body: body instanceof FormData ? body : JSON.stringify(body),
+        headers
     }
     return fetch(url, config).catch(error => Promise.resolve(error)).then(handleErrors)
 }
@@ -45,9 +46,9 @@ Api.post = (url, data, isAuthorized = true, multipart=false) => {
     } else{
         header = headerJson
     }
-    // if(isAuthorized){
-    //     header["Authorization"] = "Token " + localStorage.getItem("token")
-    // }
+    if(isAuthorized){
+        header["Authorization"] = "Token " + localStorage.getItem("token")
+    }
     return call(API_URL + url, "post", header, data)
 }
 

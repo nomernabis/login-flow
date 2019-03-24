@@ -77,13 +77,32 @@ class Login extends Component{
         const error = newErrorObj(this.props.error)
         return (
                 <div style={{ opacity: isFetching ? 0.5 : 1}} className="flex-container flex-center flex-column full-height">
-                    <h1>Login</h1>
-                    {error && <span>{error.global}</span>}
-                    <form onSubmit={this.handleSubmit}>
-                        <Field name="username" label="Username" type="text" value={this.state.username} onChange={this.handleChange} error={(error && error.username) || this.state.error.username} />
-                        <Field name="password" label="Password" type="password" value={this.state.password} onChange={this.handleChange} error={(error && error.password) || this.state.error.password} />
-                        <input disabled={isFetching} type="submit" value="Submit" />
-                    </form>
+                    <div style={{ background: 'white', padding: '16px'}}>
+                        <div style={{textAlign: 'center', marginBottom: '20px', fontSize: '1.5rem'}}>Login</div>
+                        {error && <span>{error.global}</span>}
+                        <form onSubmit={this.handleSubmit}>
+                            <Field name="username" 
+                                label="Username" 
+                                type="text" 
+                                value={this.state.username} 
+                                onChange={this.handleChange} 
+                                error={(error && error.username) || this.state.error.username} />
+                            <Field name="password" 
+                                label="Password" 
+                                type="password" 
+                                value={this.state.password} 
+                                onChange={this.handleChange} 
+                                error={(error && error.password) || this.state.error.password} />
+                        </form>
+                       <div style={{ display: 'flex', justifyContent: 'center'}}>
+                       <a 
+                            style={{ alignSelf: 'center'}} 
+                            className="text-button"  
+                            disabled={isFetching} 
+                            onClick={this.handleSubmit}
+                            type="submit" value="Submit" >Submit</a>
+                       </div>
+                    </div>
                 </div>
         )
     }

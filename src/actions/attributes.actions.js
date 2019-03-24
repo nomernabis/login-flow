@@ -6,9 +6,9 @@ export const attributesRequested = () => ({
 })
 
 export const ATTRIBUTES_SUCCESS = 'ATTRIBUTES_SUCCESS'
-export const attributesSuccess = items => ({
+export const attributesSuccess = response => ({
     type: ATTRIBUTES_SUCCESS,
-    items
+    response
 })
 
 export const ATTRIBUTES_ERROR = 'ATTRIBUTES_ERROR'
@@ -17,10 +17,10 @@ export const attributesError = error => ({
     error
 })
 
-export const fetchAttributes = () => dispatch => {
+export const fetchAttributes = (limit, offset) => dispatch => {
     dispatch(attributesRequested())
-    return Api.get('attributes/')
-        .then(items => dispatch(attributesSuccess(items)))
+    return Api.get('attributes/?limit='+limit+'&offset='+offset)
+        .then(response => dispatch(attributesSuccess(response)))
         .catch(error => dispatch(attributesError(error)))
 }
 

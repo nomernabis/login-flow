@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom"
 import { ic_add } from "react-icons-kit/md"
 import { Table } from "../ui/Table"
 import { connect } from "react-redux"
+import ActionsTableItem from "../ui/Table/ActionsTableItem"
 
 class ProductsPage extends Component{
     constructor(props){
@@ -17,9 +18,10 @@ class ProductsPage extends Component{
                 <Table
                     loadData={(limit, offset) => dispatch(fetchProducts(limit, offset))}
                     displayedColumns = {['name', 'price', 'quantity']}
-                    headerColumns = {['Name', 'Price', 'Quantity']}
+                    headerColumns = {['Name', 'Price', 'Quantity', 'Actions']}
                     items={this.props.products.results}
                     data={this.props.products}
+                    tableItem={ActionsTableItem}
                     pagination={true}
                 />
                 

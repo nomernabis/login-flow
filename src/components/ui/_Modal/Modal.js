@@ -3,6 +3,7 @@ import React, { Component } from "react"
 import InfoModal from "./InfoModal"
 import QuestionModal from "./QuestionModal"
 import AttributeFormModal from "./AttributeFormModal"
+import CategoryFormModal from "./CategoryFormModal"
 
 import { connect } from "react-redux"
 import { hideModal } from "../../../actions"
@@ -31,6 +32,11 @@ class Modal extends Component{
                 content = (
                     <AttributeFormModal  />
                 )   
+                break
+            case 'ADD_CATEGORIES':
+                content = (
+                    <CategoryFormModal />
+                )
                 break
             default:
                 break;

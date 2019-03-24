@@ -7,9 +7,9 @@ export const categoriesRequested = () => ({
 })
 
 export const CATEGORIES_SUCCESS = 'CATEGORIES_SUCCESS'
-export const categoriesSuccess = (items) => ({
+export const categoriesSuccess = response => ({
     type: CATEGORIES_SUCCESS,
-    items
+    response
 })
 
 export const CATEGORIES_ERROR = 'CATEGORIES_ERROR'
@@ -18,10 +18,11 @@ export const categoriesError = (error) => ({
     error
 })
 
-export const fetchCategories = () => dispatch => {
+export const fetchCategories = (limit, offset) => dispatch => {
     dispatch(categoriesRequested())
-    return Api.get('categories/')
+    return Api.get('categories/?limit='+limit+'&offset='+offset)
         .then(data => dispatch(categoriesSuccess(data)))
         .catch(error => dispatch(categoriesError(error)))
 }
+
 

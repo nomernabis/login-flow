@@ -19,7 +19,7 @@ export const loginError = (error) => ({
 
 export const fetchLogin = ({ username, password }) => dispatch => {
     dispatch(loginRequested())
-    return Api.post('auth/', { username, password })
+    return Api.post('auth/', { username, password }, false)
         .then(response => dispatch(loginSuccess(response.token)))
         .catch(error => dispatch(loginError(error)))
 }

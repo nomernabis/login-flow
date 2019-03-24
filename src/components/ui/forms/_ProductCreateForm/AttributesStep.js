@@ -13,30 +13,14 @@ class AttributesStep extends Component{
         //this.props.dispatch(fetchAttributes())
     }
     render(){
-        const { current, selected, items, dispatch, attributeValues } = this.props
+        const { current, selected, dispatch, attributeValues } = this.props
         console.log('selected', selected)
         return (
             <div>
                 <div style={{ display: 'flex', flexBasis: '0'}}>
                     <div style={{ display: 'inline-block', width: '60%', padding: '0 16px'}}>
-                        {/* <SingleSelectTable
-                            onClick={attribute => dispatch(addProductSelectAttribute(attribute))}
-                            current={current}
-                            selected={selected}
-                            items={items}
-                            displayedCols={['name', 'displayed_name']}
-                            header={['Name', 'Displayed Name']} /> */}
-                        
-                        {/* <Table 
-                            itemClasses='selectable-row'
-                            excludeColumns={['id']}
-                            items={this.props.categories}
-                            loadData={this.props.loadData}
-                            tableItem={SelectableTableItem}
-                            onClick={this.props.onClick}
-                        /> */}
                         <Table
-                            items={items.map(item => {
+                            items={this.props.data.results && this.props.data.results.map(item => {
                                 if(item.id == current.id){
                                     item.isSelected = true
                                 } else {
@@ -49,7 +33,8 @@ class AttributesStep extends Component{
                                 }
                                 return item
                             })}
-                            loadData = {() => this.props.dispatch(fetchAttributes())}
+                            data={this.props.data}
+                            loadData = {(limit, offset) => this.props.dispatch(fetchAttributes(limit, offset))}
                             tableItem={SingleSelectTableItem}
                             excludeColumns={['id', 'values']}
                             headerColumns={['Name', 'Displayed Name']}
@@ -76,7 +61,7 @@ class AttributesStep extends Component{
 const mapStateToProps = state => ({
     current: state.products.form.selected.attributes.current,
     selected: state.products.form.selected.attributes,
-    items: state.attributes.items,
+    data: state.attributes.response,
     attributeValues: state.products.form.selected.attributes.current ? state.products.form.selected.attributes.current.values : [],
 })
 

@@ -29,11 +29,8 @@ class UserForm extends React.Component{
     handleSubmit(){
         const { dispatch } = this.props
         if(this.validate()){
-            console.log('sending data')
             const { username, password, first_name, last_name, email, user_type, phone_number } = this.state
             dispatch(fetchPostUser({username, password, first_name, last_name, email, user_type: user_type.value, phone_number }))
-        } else {
-            console.log('fucking errors')
         }
     }
     onChange(e){
@@ -76,9 +73,6 @@ class UserForm extends React.Component{
             dispatch(hideLoader())
         }
         if(response){
-            console.log('response', response)
-            //navigate
-            //clear product data
             dispatch(clearUserForm())
             this.props.history.push('/users')
         }

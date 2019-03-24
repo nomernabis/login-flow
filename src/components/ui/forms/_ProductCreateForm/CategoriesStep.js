@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { TableContainer } from "../../../../containers"
 import { Table, SelectableTableItem } from "../../Table"
 
 class CategoriesStep extends Component{
@@ -16,18 +15,13 @@ class CategoriesStep extends Component{
                     <Table 
                         itemClasses='selectable-row'
                         excludeColumns={['id']}
-                        items={this.props.categories}
+                        items={this.props.items}
+                        data={this.props.data}
                         loadData={this.props.loadData}
                         tableItem={SelectableTableItem}
                         onClick={this.props.onClick}
+                        pagination={true}
                     />
-                    {/* <TableContainer 
-                        showCols={['name']}
-                        dataName="categories"
-                        selectedDataStore="products"
-                        selectable={true}
-                        loadData={fetchCategories}
-                        columns={[ "Name" ]} /> */}
                 </div>
             </div>
         )

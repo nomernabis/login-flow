@@ -59,7 +59,6 @@ class Table extends Component{
             })
         }
         
-        console.log('limit', this.state.limit)
         return (
             <div className="table">
                  { items && items.length > 0 ? (

@@ -98,9 +98,6 @@ class ProductCreateForm extends Component{
                             var formData = new FormData()
                             let cats = Object.keys(selectedCategories).map(id => Number(id))
 
-                            console.log('cats new', cats)
-                            console.log('attribute_values', attributes)
-
                             formData.append('image', blob)
                             formData.append('categories', cats)
                             formData.append('attribute_values', attributes)
@@ -128,8 +125,8 @@ class ProductCreateForm extends Component{
                     />
                     <Step name="Categories"
                         error={newError && newError.categories}
-                        loadData={() => this.props.dispatch(fetchCategories())} 
-                        categories={categories.map(category => {
+                        loadData={(limit, offset) => this.props.dispatch(fetchCategories(limit, offset))} 
+                        items={categories && categories.results && categories.results.map(category => {
                             if(selectedCategories[category.id]){
                                 category.isActive = true
                             } else {
@@ -137,6 +134,7 @@ class ProductCreateForm extends Component{
                             }
                             return category
                         } )}
+                        data={categories}
                         component={CategoriesStep}
                         clearError={ errorName => dispatch(addProductClearError(errorName))}
                         onClick={category => {
@@ -159,7 +157,7 @@ const mapStateToProps = state => ({
     quantity: state.products.form.quantity,
     description: state.products.form.description,
     selectedCategories: state.products.form.selected.categories,
-    categories: state.categories.items,
+    categories: state.categories.response,
     attributes: state.products.form.selected.attributes,
     images: state.products.form.selected.images,
     error: state.products.form.error,

@@ -11,12 +11,12 @@ import {
 
 const MAX_STEP_INDEX = 1
 
-export const attributes = (state={items: [], isFetching: false, form: {step: 0, name:'', displayed_name: '', values: []}}, action) => {
+export const attributes = (state={items: [], isFetching: false, response: {}, form: {step: 0, name:'', displayed_name: '', values: []}}, action) => {
     switch(action.type){
         case ATTRIBUTES_REQUESTED:
             return {...state, isFetching: true}
         case ATTRIBUTES_SUCCESS:
-            return {...state, isFetching: false, items: action.items}
+            return {...state, isFetching: false, response: action.response}
         case ATTRIBUTES_ERROR:
             return {...state, isFetching: false, error: action.error}
         case ATTRIBUTES_NEXT_STEP:
@@ -37,7 +37,7 @@ export const attributes = (state={items: [], isFetching: false, form: {step: 0, 
             return {
                 ...state, form: {...state.form, name: action.name }
             }
-        case ATTRIBUTES_FORM_SET_DISPLAYED_NAME:
+        case ATTRIBUTES_FORM_SET_DISPLAYED_NAME: 
             return {
                 ...state, form: {...state.form, displayed_name: action.displayed_name}
             }

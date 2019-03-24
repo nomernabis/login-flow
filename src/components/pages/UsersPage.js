@@ -17,7 +17,6 @@ class UsersPage extends React.Component{
                         onEdit={user => this.props.history.push('/users/edit/'+user.id)}
                         onDelete={user => dispatch(showModal('QUESTION_MODAL', 'Do you want to delete user ' + user.username + '?',
                             () => {
-                                console.log('yes', user)
                                 Api.delete('users/' + user.id)
                                     .then(response => {
                                         dispatch(hideModal())

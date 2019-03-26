@@ -1,7 +1,0 @@
-export * from "./auth.reducer"
-export * from "./categories.reducer"
-export * from "./modal.reducer"
-export * from "./products.reducer"
-export * from "./attributes.reducer"
-export * from "./loader.reducer"
-export * from "./users.reducer"

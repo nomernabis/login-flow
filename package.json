@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://github.com/nomernabis/login-flow-redux",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --open --hot",
@@ -27,6 +28,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "cross-fetch": "^3.0.0",
     "draft-js": "^0.10.5",
+    "gh-pages": "^2.0.1",
     "immutable": "^4.0.0-rc.12",
     "is-hotkey": "^0.1.4",
     "prop-types": "^15.7.2",
